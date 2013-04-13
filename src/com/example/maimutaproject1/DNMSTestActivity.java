@@ -42,7 +42,7 @@ public class DNMSTestActivity extends Activity {
 	
 	TextView textViewTrialsWon, textViewTrialsLost;
 	
-	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMain, numberOfMistakes, numberOfAllMistakes;
+	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes;
 	
 	int testMode, state;
 	
@@ -58,9 +58,7 @@ public class DNMSTestActivity extends Activity {
 	String res;
 	
 	// will contain the available custom views
-	ArrayList<CustomDrawableView> listCustomDrawableViewChoices;
-	
-	ArrayList<CustomDrawableView> listCustomDrawableViewMain;
+	ArrayList<CustomDrawableView> listCustomDrawableViewChoices, listCustomDrawableViewMain;
 	
 	MediaPlayer mpLetsGo, mpTrialWon, mpTrialLost;
 	
@@ -89,7 +87,9 @@ public class DNMSTestActivity extends Activity {
         editor = settings.edit();
         
         testIsFinished = false;
- 
+        
+        
+        
         chronometerTimeWhenStopped = 0;
 		
 		Bundle infos = getIntent().getExtras();
@@ -128,11 +128,19 @@ public class DNMSTestActivity extends Activity {
 
 		relativeLayoutMain = (RelativeLayout)findViewById(R.id.relativeLayoutMain);
 		relativeLayoutChoices = (RelativeLayout)findViewById(R.id.relativeLayoutChoices);
-		
+
+		listCustomDrawableViewChoices = new ArrayList<CustomDrawableView>();
 		listCustomDrawableViewMain = new ArrayList<CustomDrawableView>();
 		
 		// TODO : parametre before
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
+		{
+			CustomDrawableView c = new CustomDrawableView(this);
+			relativeLayoutChoices.addView(c);
+			listCustomDrawableViewChoices.add(c);
+		}
+		
+		for (int i = 0; i < 1; i++)
 		{
 			CustomDrawableView c = new CustomDrawableView(this);
 			c.setIsTheMainView(true);
@@ -140,18 +148,9 @@ public class DNMSTestActivity extends Activity {
 			relativeLayoutMain.addView(c);
 			listCustomDrawableViewMain.add(c);
 		}
-
-		listCustomDrawableViewChoices = new ArrayList<CustomDrawableView>();
 		
-		// TODO : parametre before
-		for (int i = 0; i < 5; i++)
-		{
-			CustomDrawableView c = new CustomDrawableView(this);
-			relativeLayoutChoices.addView(c);
-			listCustomDrawableViewChoices.add(c);
-		}
-		
-		
+		textViewTrialsWon = (TextView)findViewById(R.id.textViewTrialsWon);
+		textViewTrialsLost = (TextView)findViewById(R.id.textViewTrialsLost);
 		
 		chronometer = (Chronometer)findViewById(R.id.chronometer);
 		
@@ -160,9 +159,9 @@ public class DNMSTestActivity extends Activity {
 		trialsWon = 0;
 		trialsLost = 0;
 		
-		numberOfChoices = listCustomDrawableViewChoices.size();
 		
-		numberOfMain = listCustomDrawableViewMain.size();
+		
+		numberOfChoices = listCustomDrawableViewChoices.size();
 		
 		// current time
 		dateTestStart = Calendar.getInstance().getTime();
@@ -172,13 +171,12 @@ public class DNMSTestActivity extends Activity {
 			public void run() 
 			{
 				// hide the views
-				
-				for(CustomDrawableView c : listCustomDrawableViewMain)
+				for (CustomDrawableView c : listCustomDrawableViewMain)
 				{
 					c.setVisibility(View.GONE);
 				}
-
-				for(CustomDrawableView c : listCustomDrawableViewChoices)
+				
+				for (CustomDrawableView c : listCustomDrawableViewChoices)
 				{
 					c.setVisibility(View.GONE);
 				}
@@ -187,11 +185,11 @@ public class DNMSTestActivity extends Activity {
 				initNewTrial();
 			}
 		});
-		
-		for(CustomDrawableView c : listCustomDrawableViewMain)
+
+		for (CustomDrawableView view : listCustomDrawableViewMain)
 		{
 			// touch listener of the main figure
-			c.setOnTouchListener(new OnTouchListener()
+			view.setOnTouchListener(new OnTouchListener()
 			{
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -212,7 +210,7 @@ public class DNMSTestActivity extends Activity {
 				
 			});
 		}
-
+		
 		
 		// for all the choices figure
 		for (CustomDrawableView view : listCustomDrawableViewChoices)
@@ -245,12 +243,12 @@ public class DNMSTestActivity extends Activity {
 								mpTrialWon.start();
 								
 								// hide the views
-								for(CustomDrawableView c : listCustomDrawableViewMain)
+								for (CustomDrawableView c : listCustomDrawableViewMain)
 								{
 									c.setVisibility(View.GONE);
 								}
-
-								for(CustomDrawableView c : listCustomDrawableViewChoices)
+								
+								for (CustomDrawableView c : listCustomDrawableViewChoices)
 								{
 									c.setVisibility(View.GONE);
 								}
@@ -299,12 +297,12 @@ public class DNMSTestActivity extends Activity {
 									arrayListTests.add(t);
 									
 									// hide all the views
-									for(CustomDrawableView c : listCustomDrawableViewMain)
+									for (CustomDrawableView c : listCustomDrawableViewMain)
 									{
 										c.setVisibility(View.GONE);
 									}
 									
-									for(CustomDrawableView c : listCustomDrawableViewChoices)
+									for (CustomDrawableView c : listCustomDrawableViewChoices)
 									{
 										c.setVisibility(View.GONE);
 									}
@@ -472,40 +470,29 @@ public class DNMSTestActivity extends Activity {
 		
 		int width = screenWidth/7, height= screenWidth/7;
 		
+		CustomDrawableView main = listCustomDrawableViewMain.get(0);
+		
+		// update of the main view
+		main.setCustomView(new CustomDrawableView(getApplicationContext(), intColor, width, height));
 		// width and height
 		layoutParams = new RelativeLayout.LayoutParams(width, height);
+		// set position
+		layoutParams.setMargins(screenWidth/2-width/2,screenHeight/8,0,0);
+		main.setLayoutParams(layoutParams);
 		
+		listCustomDrawableViewMain.set(0, main);
 		
-		for (int i= 0; i < numberOfMain; i++)
-		{
-			CustomDrawableView view = listCustomDrawableViewMain.get(i);
-			// set position
-			layoutParams.setMargins((screenWidth/numberOfMain)*i+(width/2),0,0,0);
-			
-			Log.d("info",""+(screenWidth/numberOfMain)*i+(width/2));
-			// update of the main view
-			view.setCustomView(new CustomDrawableView(getApplicationContext(), intColor, width, height));
-			
-			// update of the main view 
-			view.setLayoutParams(layoutParams);
-			
-			// update in the list
-			listCustomDrawableViewMain.set(i, view);
-		}
-
 		int numberOfChoices = listCustomDrawableViewChoices.size();
 		
 		Random r = new Random();
 		int randomNumber = r.nextInt(numberOfChoices);
-		
-		int indexViewMain = 0;
 		
 		// loop of the choices view
 		for (int i= 0; i < numberOfChoices; i++)
 		{
 			CustomDrawableView view = listCustomDrawableViewChoices.get(i);
 			// one of these view wont be like the main view
-			if (randomNumber == 0 || randomNumber == 1)
+			if (randomNumber == i)
 			{
 				// we generate a new view
 				CustomDrawableView newView = new CustomDrawableView(getApplicationContext(), intColor, width, height);
@@ -517,21 +504,16 @@ public class DNMSTestActivity extends Activity {
 			else
 			{
 				// this one will be like the main view !
-				
 				view.setCustomView(listCustomDrawableViewMain.get(0));
-				indexViewMain++;
-				
 				view.setIsLikeTheMainView(true);
 				view.setIsTheMainView(false);
 				
 			}
 			
-			
-			
 			// width and height
 			layoutParams = new RelativeLayout.LayoutParams(width, height);
 			// set position
-		    layoutParams.setMargins((screenWidth/numberOfChoices)*i+(width/2),0,0,0);
+		    layoutParams.setMargins((screenWidth/4)*i+(width/2),0,0,0);
 		    view.setLayoutParams(layoutParams);
 			
 			// update in the list
@@ -545,9 +527,9 @@ public class DNMSTestActivity extends Activity {
 		{
 			public void run() 
 			{
-				for(CustomDrawableView c : listCustomDrawableViewMain)
+				// the main view will be displays after a delay
+				for (CustomDrawableView c : listCustomDrawableViewMain)
 				{
-					// the main view will be displays after a delay
 					c.setVisibility(View.VISIBLE);
 				}
 			}
@@ -558,10 +540,9 @@ public class DNMSTestActivity extends Activity {
 		{
 			public void run() 
 			{
-				
-				for(CustomDrawableView c : listCustomDrawableViewMain)
+				// the main view will be displays after a delay
+				for (CustomDrawableView c : listCustomDrawableViewMain)
 				{
-					// the main view will be displays after a delay
 					c.setVisibility(View.GONE);
 				}
 			}
@@ -697,7 +678,7 @@ public class DNMSTestActivity extends Activity {
 				
 				String dateToString2 = formatDateJourTitle2.format(d); 
 
-				String title = "DNMSTest_"+dateToString;
+				String title = "DNMSTest_"+dateToString; 
 				
 				String title2 = "DNMS Test : "+dateToString2;
 				
@@ -709,24 +690,22 @@ public class DNMSTestActivity extends Activity {
 					String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
 					
 					Log.d("info", "online");
+					// send datas
+					// TODO
 					processExecuterModule.runSendTestData(DNMSTestActivity.this,title,res,sendResultByEmail,title2);
-				} 
+				}
 				else
 				{
 					showToastDataSent("Envoi des données impossible : pas de connexion à Internet");
 					
-					int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
+					// TODO : save the result in the app
+					/*
+					Log.d("info", "nicht online");
 					
-					numberOfWaitingDatas++;
-
-					editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
+					editor.putString("fileTitle1", title);
+					editor.putString("testData1", res);
 					
-					editor.putBoolean("dataToSend", true);
-					editor.putString("fileTitle"+numberOfWaitingDatas, title);
-					editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
-					editor.putString("testData"+numberOfWaitingDatas, res);
-					
-					editor.commit();
+					editor.commit();*/
 				}
 				
 				
