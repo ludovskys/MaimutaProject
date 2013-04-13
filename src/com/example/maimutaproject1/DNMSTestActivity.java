@@ -698,14 +698,18 @@ public class DNMSTestActivity extends Activity {
 				{
 					showToastDataSent("Envoi des données impossible : pas de connexion à Internet");
 					
-					// TODO : save the result in the app
-					/*
-					Log.d("info", "nicht online");
+					int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
 					
-					editor.putString("fileTitle1", title);
-					editor.putString("testData1", res);
+					numberOfWaitingDatas++;
+										
+					editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
 					
-					editor.commit();*/
+					editor.putBoolean("dataToSend", true);
+					editor.putString("fileTitle"+numberOfWaitingDatas, title);
+					editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
+					editor.putString("testData"+numberOfWaitingDatas, res);
+					
+					editor.commit();
 				}
 				
 				
