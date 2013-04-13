@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.maimutaproject1"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <!-- utilisation d'internet -->
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.maimutaproject1.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+
+            <!-- permet de bloquer l'orientation en mode paysage -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.BeforeDMSOrDNMSTestActivity"
+            android:label="@string/title_activity_before_dmstest"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.BeforeTrainingProgramTestActivity"
+            android:label="@string/title_activity_before_training_program_test"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.DMSTestActivity"
+            android:label="@string/title_activity_dmstest"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.TrainingProgramTestActivity"
+            android:label="@string/title_activity_training_program_test"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.DNMSTestActivity"
+            android:label="@string/title_activity_dnmstest" >
+        </activity>
+        <activity
+            android:name="com.example.maimutaproject1.BeforeDNMSTestActivity"
+            android:label="@string/title_activity_before_dnmstest" >
+        </activity>
+    </application>
+
+</manifest>

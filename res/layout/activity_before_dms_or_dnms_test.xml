@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".BeforeDMSOrDNMSTestActivity" >
+
+    <!-- Texte en haut de la vue -->
+
+    <TextView
+        android:id="@+id/textViewDmsParams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/dms_params"
+        android:textStyle="bold" />
+
+    <!-- Label du premier paramètre (nombre max d'essais) -->
+
+    <TextView
+        android:id="@+id/textViewMaxNbTrials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDmsParams"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/textViewDmsParams"
+        android:text="@string/dms_max_nb_trials" />
+
+    <!-- Champ de texte du premier paramètre (nombre max d'essais) -->
+
+    <EditText
+        android:id="@+id/editTextMaxNbTrials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewMaxNbTrials"
+        android:layout_alignLeft="@+id/textViewDmsParams"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="2" />
+
+    <!-- Label du deuxième paramètre (temps max) -->
+
+    <TextView
+        android:id="@+id/textViewMaxTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDmsParams"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/textViewDmsParams"
+        android:text="@string/dms_max_time" />
+
+    <!-- Champ de texte du deuxième paramètre (temps max) -->
+
+    <EditText
+        android:id="@+id/editTextMaxTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewMaxTime"
+        android:layout_toRightOf="@+id/textViewMaxTime"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="2" />
+
+    <!-- Label du troisième paramètre (temps entre chaque essai) -->
+
+
+    <!-- Champ de texte du troisième paramètre, 1er intervalle (temps entre chaque essai) -->
+
+
+    <!-- Label "à" du troisième paramètre (temps entre chaque essai) -->
+
+
+    <!-- Champ de texte du troisième paramètre, 2ème intervalle (temps entre chaque essai) -->
+
+
+    <!-- Label du délai phase 1 -->
+
+    <TextView
+        android:id="@+id/textViewDelayPhase1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textViewDmsParams"
+        android:layout_below="@+id/textViewMaxNbTrials"
+        android:layout_marginTop="42dp"
+        android:text="@string/dms_delay_phase1" />
+
+    <!-- Champ de texte délai phase 1 -->
+
+    <EditText
+        android:id="@+id/editTextDelayPhase1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewDelayPhase1"
+        android:layout_toRightOf="@+id/textViewDelayPhase1"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:maxLength="5" />
+
+    <!-- Label du délai phase 1 -->
+
+    <TextView
+        android:id="@+id/textViewDelayBetweenPhase1And2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textViewDmsParams"
+        android:layout_below="@+id/textViewDelayPhase1"
+        android:layout_marginTop="42dp"
+        android:text="@string/dms_delay_between_phase_12" />
+
+    <!-- Champ de texte délai phase 1 -->
+
+    <EditText
+        android:id="@+id/editTextDelayBetweenPhase1And2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textViewDelayBetweenPhase1And2"
+        android:layout_toRightOf="@+id/textViewDelayBetweenPhase1And2"
+        android:imeOptions="actionDone"
+        android:inputType="numberSigned"
+        android:maxLength="5" />
+
+    <Button
+        android:id="@+id/buttonStartDMSTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBoxOtherChance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/custom_button_start"
+        android:gravity="center"
+        android:onClick="buttonStartDMSTestClicked"
+        android:text="@string/start" />
+
+    <CheckBox
+        android:id="@+id/checkBoxOtherChance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDelayBetweenPhase1And2"
+        android:layout_centerHorizontal="true"
+        android:text="@string/check_box_other_chance" />
+
+</RelativeLayout>

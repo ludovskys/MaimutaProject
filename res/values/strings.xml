@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MaimutaProject1</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="start_test">Commencer un test</string>
+    <string name="context_menu_choose_type">Choississez un type de test</string>
+    <string name="context_menu_choose_type_choice_1">Training program</string>
+    <string name="context_menu_choose_type_choice_2">DMS (Delayed Matching to Sample)</string>
+    <string name="context_menu_choose_type_choice_3">DNMS (Delayed Non Matching to Sample)</string>
+    <string name="title_activity_before_training_program_test">BeforeTrainingProgramTestActivity</string>
+    <string name="error">Erreur</string>
+    <string name="fill_input_text">Merci de bien vouloir remplir les champs nécessaires</string>
+    <string name="fill_input_text_max">Merci de bien vouloir renseigner un nombre d\'essais ou un temps maximum</string>
+    <string name="confirm_cancel">Êtes-vous sûr de vouloir quitter le test ? Votre progression sera perdue</string>
+    <string name="fill_input_text_delay">Merci de bien vouloir renseigner un délai</string>
+
+    <!-- Concerne l'activité "BeforeDMSTestActivity -->
+    <string name="title_activity_before_dmstest">BeforeDMSTestActivity</string>
+    <string name="dms_params">Paramètres pour un test DMS</string>
+    <string name="dms_max_nb_trials">Nombre maximum d\'essais (0 pour pas de limite) :</string>
+    <string name="dms_max_time">Temps maximum (minutes) (0 pour pas de limite) :</string>
+    <string name="dms_time_between_trials">Temps entre chaque essai (secondes) : De </string>
+    <string name="dms_time_between_trials2">à </string>
+    <string name="start">Commencer</string>
+    <string name="title_activity_dmstest">DMSTestActivity</string>
+    <string name="title_activity_training_program_test">TrainingProgramTestActivity</string>
+    <string name="dms_delay_phase1">Délai phase 1 (en ms) :</string>
+    <string name="dms_delay_between_phase_12">Délai entre la phase 1 et 2 (en ms) :</string>
+    <string name="resultats">Résultats</string>
+    <string name="check_box_other_chance">Autre chance </string>
+    <string name="check_box_send_email">Envoyer les résultats par email</string>
+    <string name="title_activity_dnmstest">DNMSTestActivity</string>
+    <string name="title_activity_before_dnmstest">BeforeDNMSTestActivity</string>
+    
+    <string name="dnms_params">Paramètres pour un test DNMS</string>
+
+</resources>
