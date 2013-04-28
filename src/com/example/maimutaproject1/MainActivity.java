@@ -1,5 +1,9 @@
 package com.example.maimutaproject1;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
@@ -273,18 +277,34 @@ public class MainActivity extends Activity {
 	}
 	
 	// function called in SendDataTask
-	public void showToastDataSent(final String content)
+	public void showToastDataSent(final String content, boolean success)
 	{
-		Handler h=new Handler();
-		
-		h.postDelayed(new Runnable() 
+		if (success)
 		{
-			public void run() 
-			{
-				Log.d("info",content);
-				Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
-			}
-		},1000);
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Log.d("info",content);
+					Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+				}
+				
+			});
+		}
+		else
+		{
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Log.d("info",content);
+					Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+				}
+				
+			});
+		}
 		
 	}
 }

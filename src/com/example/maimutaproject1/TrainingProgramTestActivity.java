@@ -368,20 +368,7 @@ public class TrainingProgramTestActivity extends Activity {
 				}
 				else
 				{
-					showToastDataSent("Envoi des données impossible : pas de connexion à Internet");
-					
-					int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
-					
-					numberOfWaitingDatas++;
-										
-					editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
-					
-					editor.putBoolean("dataToSend", true);
-					editor.putString("fileTitle"+numberOfWaitingDatas, title);
-					editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
-					editor.putString("testData"+numberOfWaitingDatas, res);
-					
-					editor.commit();
+					showToastDataSent("Envoi des données impossible : pas de connexion à Internet",false);
 				}
 				
 				
@@ -448,21 +435,65 @@ public class TrainingProgramTestActivity extends Activity {
 	}
 	
 	// function called in SendDataTask
-	public void showToastDataSent(final String content)
+	public void showToastDataSent(final String content, boolean success)
 	{
-		
-		this.runOnUiThread(new Runnable(){
+		if (success)
+		{
+			this.runOnUiThread(new Runnable(){
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Log.d("info",content);
-				Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
-			}
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Log.d("info",content);
+					Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+				}
+				
+			});
+		}
+		else
+		{
+			this.runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Log.d("info",content);
+					Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+				}
+				
+			});
 			
-		});
+			Date d = Calendar.getInstance().getTime();
+			
+			SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
+			
+			SimpleDateFormat formatDateJourTitle2 = new SimpleDateFormat("dd/MM/yyyy à kk:mm:ss");
+			
+			String dateToString = formatDateJourTitle.format(d); 
+			
+			String dateToString2 = formatDateJourTitle2.format(d); 
+
+			String title = "TrainingProgram_"+dateToString;
+			
+			String title2 = "Training Program : "+dateToString2;
+			
+			int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
+			
+			numberOfWaitingDatas++;
+								
+			editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
+			
+			editor.putBoolean("dataToSend", true);
+			editor.putString("fileTitle"+numberOfWaitingDatas, title);
+			editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
+			editor.putString("testData"+numberOfWaitingDatas, res);
+			
+			editor.commit();
+		}
+		
 		
 		finish();
+		
 	}
 
 }

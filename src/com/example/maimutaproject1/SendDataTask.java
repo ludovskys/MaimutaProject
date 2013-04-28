@@ -91,19 +91,19 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 			
 			if (testType == SystemUtils.DMS_TEST)
 			{
-				dmsTestActivity.showToastDataSent("Problème lors de l'envoi des données");
+				dmsTestActivity.showToastDataSent("Problème lors de l'envoi des données",false);
 			}
 			else if (testType == SystemUtils.TRAINING_PROGRAM_TEST)
 			{
-				trainingProgramTestActivity.showToastDataSent("Problème lors de l'envoi des données");
+				trainingProgramTestActivity.showToastDataSent("Problème lors de l'envoi des données",false);
 			}
 			else if (testType == SystemUtils.DNMS_TEST)
 			{
-				dnmsTestActivity.showToastDataSent("Problème lors de l'envoi des données");
+				dnmsTestActivity.showToastDataSent("Problème lors de l'envoi des données",false);
 			}
 			else
 			{
-				mainActivity.showToastDataSent("Problème lors de l'envoi des données");
+				mainActivity.showToastDataSent("Problème lors de l'envoi des données",false);
 			}
 		}
 		
@@ -121,19 +121,19 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 			// we notifiate the current activity that the datas has been sent successfully
 			if (testType == SystemUtils.DMS_TEST)
 			{
-				dmsTestActivity.showToastDataSent("Données bien envoyées");
+				dmsTestActivity.showToastDataSent("Données bien envoyées",true);
 			}
 			else if (testType == SystemUtils.TRAINING_PROGRAM_TEST)
 			{
-				trainingProgramTestActivity.showToastDataSent("Données bien envoyées");
+				trainingProgramTestActivity.showToastDataSent("Données bien envoyées",true);
 			}
 			else if (testType == SystemUtils.DNMS_TEST)
 			{
-				dnmsTestActivity.showToastDataSent("Données bien envoyées");
+				dnmsTestActivity.showToastDataSent("Données bien envoyées",true);
 			}
 			else
 			{
-				mainActivity.showToastDataSent("Données bien envoyées. Nom du fichier : "+fileTitle);
+				mainActivity.showToastDataSent("Données bien envoyées. Nom du fichier : "+fileTitle,true);
 			}
 		}
 		

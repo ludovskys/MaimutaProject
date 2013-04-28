@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="Entrez votre prénom"
-        android:ems="10" >
+        android:ems="30" >
 
         <requestFocus />
     </EditText>
