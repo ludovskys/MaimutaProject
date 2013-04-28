@@ -21,6 +21,8 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 	private int testType;
 	
 	private String fileTitle;
+	
+	private boolean problemSendingDatas;
 
     public SendDataTask(DMSTestActivity a)
     {
@@ -52,6 +54,8 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 		WebServicesConfig wS = new WebServicesConfig();
 		
 		String res = "";
+		
+		problemSendingDatas = false;
 
 		try 
 		{		
@@ -83,6 +87,8 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 		{
 			e.printStackTrace();
 			
+			problemSendingDatas = true;
+			
 			if (testType == SystemUtils.DMS_TEST)
 			{
 				dmsTestActivity.showToastDataSent("Problème lors de l'envoi des données");
@@ -106,26 +112,31 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 	
 	@Override
 	protected void onPostExecute(String result) {
-		System.out.println("Done");
-		System.out.println("Result : "+result);
 		
-		// we notifiate the current activity that the datas has been sent successfully
-		if (testType == SystemUtils.DMS_TEST)
+		if (!problemSendingDatas)
 		{
-			dmsTestActivity.showToastDataSent("Données bien envoyées");
+			System.out.println("Done");
+			System.out.println("Result : "+result);
+			
+			// we notifiate the current activity that the datas has been sent successfully
+			if (testType == SystemUtils.DMS_TEST)
+			{
+				dmsTestActivity.showToastDataSent("Données bien envoyées");
+			}
+			else if (testType == SystemUtils.TRAINING_PROGRAM_TEST)
+			{
+				trainingProgramTestActivity.showToastDataSent("Données bien envoyées");
+			}
+			else if (testType == SystemUtils.DNMS_TEST)
+			{
+				dnmsTestActivity.showToastDataSent("Données bien envoyées");
+			}
+			else
+			{
+				mainActivity.showToastDataSent("Données bien envoyées. Nom du fichier : "+fileTitle);
+			}
 		}
-		else if (testType == SystemUtils.TRAINING_PROGRAM_TEST)
-		{
-			trainingProgramTestActivity.showToastDataSent("Données bien envoyées");
-		}
-		else if (testType == SystemUtils.DNMS_TEST)
-		{
-			dnmsTestActivity.showToastDataSent("Données bien envoyées");
-		}
-		else
-		{
-			mainActivity.showToastDataSent("Données bien envoyées. Nom du fichier : "+fileTitle);
-		}
+		
     }
  }
 

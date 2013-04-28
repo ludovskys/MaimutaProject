@@ -444,7 +444,7 @@ public class DNMSTestActivity extends Activity {
 				state = SystemUtils.STATE_FINISH;
 
 				// we show the res
-				showAlertDialogRes();
+				//showAlertDialogRes();
 				
 				return;
 			}
@@ -654,6 +654,7 @@ public class DNMSTestActivity extends Activity {
 			}
 			
 			res = "DNMS Test \r\n" +
+					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\n "+
 					"Nombre de tests : "+numberOfTrials+" \r\n" +
 					"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n" +
 					"Pourcentage de réussite : "+winningPourcentage+"% \r\n \r\n"+ resTest;
@@ -740,16 +741,18 @@ public class DNMSTestActivity extends Activity {
 	// function called in SendDataTask
 	public void showToastDataSent(final String content)
 	{
-		Handler h=new Handler();
-		
-		h.postDelayed(new Runnable() 
-		{
-			public void run() 
-			{
+		this.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
 				Log.d("info",content);
 				Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
 			}
-		},1000);
+			
+		});
+		
+		finish();
 		
 	}
 

@@ -179,6 +179,9 @@ public class MainActivity extends Activity {
 		boolean res = false;
 		if (!editTextName.getText().toString().equalsIgnoreCase(""))
 		{
+			editor.putString("userName", editTextName.getText().toString());
+			editor.commit();
+			
 			if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_1)
 			{
 				// training program

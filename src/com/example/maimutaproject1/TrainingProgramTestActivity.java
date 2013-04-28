@@ -142,7 +142,7 @@ public class TrainingProgramTestActivity extends Activity {
 								// stop the trial
 								mpMarioDies.start();
 								buildResult();
-								showAlertDialogRes();
+								//showAlertDialogRes(); 
 								
 								state = SystemUtils.STATE_FINISH;
 							}
@@ -331,6 +331,7 @@ public class TrainingProgramTestActivity extends Activity {
 		NumberFormat formatter = new DecimalFormat("0.00");
 		
 		res = "Training Program \r\n" +
+				"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\n "+
 				"Echec au niveau n° "+level+" \r\n" +
 				"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n \r\n"+ resTest;
 		
@@ -449,17 +450,19 @@ public class TrainingProgramTestActivity extends Activity {
 	// function called in SendDataTask
 	public void showToastDataSent(final String content)
 	{
-		Handler h=new Handler();
 		
-		h.postDelayed(new Runnable() 
-		{
-			public void run() 
-			{
+		this.runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
 				Log.d("info",content);
 				Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
 			}
-		},1000);
+			
+		});
 		
+		finish();
 	}
 
 }
