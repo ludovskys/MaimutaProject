@@ -27,7 +27,7 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
+        public static final int action_settings=0x7f090015;
         public static final int buttonStartDMSTest=0x7f090009;
         public static final int buttonStartTest=0x7f090011;
         public static final int buttonStartTrainingProgramTest=0x7f09000b;
@@ -38,7 +38,8 @@ public final class R {
         public static final int editTextDelayPhase1=0x7f090006;
         public static final int editTextMaxNbTrials=0x7f090002;
         public static final int editTextMaxTime=0x7f090004;
-        public static final int relativeLayout=0x7f090013;
+        public static final int editTextName=0x7f090013;
+        public static final int relativeLayout=0x7f090014;
         public static final int relativeLayoutChoices=0x7f09000f;
         public static final int relativeLayoutMain=0x7f09000c;
         public static final int textViewDelayBetweenPhase1And2=0x7f090007;

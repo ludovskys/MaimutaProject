@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -34,30 +35,53 @@ public class MainActivity extends Activity {
 	
 	Button buttonStartTest;
 	
+	EditText editTextName;
+	
 	MediaPlayer mpIFeelIt, mpThankYou;
 	
 	private SharedPreferences.Editor editor;
 	private SharedPreferences settings;
 	
 	CheckBox checkBoxSendResultByEmail;
+	
+	AlertDialog alertDialogNameMissing;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		editTextName = (EditText)findViewById(R.id.editTextName);
 		buttonStartTest = (Button)findViewById(R.id.buttonStartTest);
 		registerForContextMenu(buttonStartTest);
 		
 		checkBoxSendResultByEmail = (CheckBox)findViewById(R.id.checkBoxSendResultByEmail);
 		
+		alertDialogNameMissing = new AlertDialog.Builder(this).create();
+		
 		// listener of the "start the test" button
 		buttonStartTest.setOnClickListener(new OnClickListener(){
 
-			@Override
+			@Override 
 			public void onClick(View v) {
 				// we open the context menu
-				openContextMenu(v);
+				if (editTextName.getText().toString().equalsIgnoreCase(""))
+				{				
+					alertDialogNameMissing.setTitle("Erreur");
+					alertDialogNameMissing.setMessage("Veuillez entrer votre prénom");
+					
+					alertDialogNameMissing.setButton(RESULT_OK, "OK", new DialogInterface.OnClickListener() {
+					      public void onClick(DialogInterface dialog, int which) {
+
+					      }
+					});
+					
+					alertDialogNameMissing.show();
+				}
+				else
+				{
+					openContextMenu(v);
+				}
 			}
 			
 		});
@@ -144,7 +168,7 @@ public class MainActivity extends Activity {
 				
 			}
 			
-		});
+		}); 
 		
 		
 	}
@@ -152,35 +176,46 @@ public class MainActivity extends Activity {
 	@Override  
 	public boolean onContextItemSelected(MenuItem item) 
 	{  
-		if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_1)
+		boolean res = false;
+		if (!editTextName.getText().toString().equalsIgnoreCase(""))
 		{
-			// training program
-			
-			Intent i = new Intent(MainActivity.this, BeforeTrainingProgramTestActivity.class);
-			startActivity(i);
+			if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_1)
+			{
+				// training program
+				
+				Intent i = new Intent(MainActivity.this, BeforeTrainingProgramTestActivity.class);
+				startActivity(i);
+				res = true;
+			}
+			else if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_2)
+			{
+				// dms
+				
+				Intent i = new Intent(MainActivity.this, BeforeDMSOrDNMSTestActivity.class);
+				i.putExtra("testType", SystemUtils.DMS_TEST);
+				startActivity(i);
+				res = true;
+			}
+			else if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_3)
+			{
+				// dnms
+				
+				Intent i = new Intent(MainActivity.this, BeforeDMSOrDNMSTestActivity.class);
+				i.putExtra("testType", SystemUtils.DNMS_TEST);
+				startActivity(i);
+				res = true;
+			}
+			else 
+			{
+				res = false;
+			}
 		}
-		else if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_2)
-		{
-			// dms
-			
-			Intent i = new Intent(MainActivity.this, BeforeDMSOrDNMSTestActivity.class);
-			i.putExtra("testType", SystemUtils.DMS_TEST);
-			startActivity(i);
+		else
+		{	
+			res = false;
 		}
-		else if(item.getItemId() == CONTEXT_MENU_CHOOSE_TYPE_CHOICE_3)
-		{
-			// dnms
-			
-			Intent i = new Intent(MainActivity.this, BeforeDMSOrDNMSTestActivity.class);
-			i.putExtra("testType", SystemUtils.DNMS_TEST);
-			startActivity(i);
-		}
-		else 
-		{
-			return false;
-		}
-		
-		return true; 
+
+		return res; 
 	}
 	
 	// when the checkbox is clicked

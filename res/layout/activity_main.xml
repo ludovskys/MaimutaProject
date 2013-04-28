@@ -28,5 +28,17 @@
         android:onClick="onCheckboxSendEmailClicked"
         android:text="@string/check_box_send_email" />
 
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonStartTest"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:hint="Entrez votre prénom"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
