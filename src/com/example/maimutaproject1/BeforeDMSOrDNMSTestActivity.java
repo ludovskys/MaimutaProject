@@ -165,6 +165,21 @@ public class BeforeDMSOrDNMSTestActivity extends Activity {
 			
 			alertDialog.show();
 		}
+		else if (Integer.parseInt(editTextNumberViews.getText().toString()) > 6 || (Integer.parseInt(editTextNumberViews.getText().toString()) < 2))
+		{
+			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+			
+			alertDialog.setTitle(R.string.error);
+			alertDialog.setMessage(getString(R.string.wrong_number_views));
+			
+			alertDialog.setButton(RESULT_OK, "OK", new DialogInterface.OnClickListener() {
+			      public void onClick(DialogInterface dialog, int which) {
+
+			      }
+			});
+			
+			alertDialog.show();
+		}
 		else
 		{		
 			Intent i = null;

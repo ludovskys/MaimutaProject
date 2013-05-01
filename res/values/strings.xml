@@ -36,7 +36,8 @@
     
     <string name="number_views">Nombre de figures :</string>
     
-    
+    <string name="wrong_number_views">Merci de choisir entre 2 et 6 figures</string>
+
     <string name="edit_text_name">Votre prénom ici</string>
     
     <string name="dnms_params">Paramètres pour un test DNMS</string>
