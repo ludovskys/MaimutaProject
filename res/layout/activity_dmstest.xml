@@ -11,22 +11,6 @@
         android:layout_weight="0.3"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textViewTrialsWon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/textViewTrialsLost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/textViewTrialsWon"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
     </RelativeLayout>
     
     <RelativeLayout

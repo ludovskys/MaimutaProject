@@ -42,8 +42,6 @@ public class DMSTestActivity extends Activity {
 
 	CustomDrawableView customDrawableViewMain;
 	
-	TextView textViewTrialsWon, textViewTrialsLost;
-	
 	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes;
 	
 	int testMode, state;
@@ -142,9 +140,6 @@ public class DMSTestActivity extends Activity {
 		}
 		
 		relativeLayoutMain.addView(customDrawableViewMain);
-		
-		textViewTrialsWon = (TextView)findViewById(R.id.textViewTrialsWon);
-		textViewTrialsLost = (TextView)findViewById(R.id.textViewTrialsLost);
 		
 		chronometer = (Chronometer)findViewById(R.id.chronometer);
 		
