@@ -625,7 +625,7 @@ public class DMSTestActivity extends Activity {
 			}
 			
 			res = "DMS Test \r\n" +
-					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\n "+
+					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\r\n "+
 					"Nombre de tests : "+numberOfTrials+" \r\n" +
 					"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n" +
 					"Pourcentage de réussite : "+winningPourcentage+"% \r\n \r\n"+ resTest;

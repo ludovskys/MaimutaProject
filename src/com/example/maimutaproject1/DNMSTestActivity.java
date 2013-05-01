@@ -10,27 +10,22 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnVideoSizeChangedListener;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +37,7 @@ public class DNMSTestActivity extends Activity {
 	
 	TextView textViewTrialsWon, textViewTrialsLost;
 	
-	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes;
+	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes, numberOfMain;
 	
 	int testMode, state;
 	
@@ -140,7 +135,7 @@ public class DNMSTestActivity extends Activity {
 			listCustomDrawableViewChoices.add(c);
 		}
 		
-		for (int i = 0; i < 1; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			CustomDrawableView c = new CustomDrawableView(this);
 			c.setIsTheMainView(true);
@@ -158,10 +153,10 @@ public class DNMSTestActivity extends Activity {
 		numberOfTrials = 0;
 		trialsWon = 0;
 		trialsLost = 0;
-		
-		
-		
+
 		numberOfChoices = listCustomDrawableViewChoices.size();
+		// number of figures at the phase 1
+		numberOfMain = listCustomDrawableViewMain.size();
 		
 		// current time
 		dateTestStart = Calendar.getInstance().getTime();
@@ -470,19 +465,21 @@ public class DNMSTestActivity extends Activity {
 		
 		int width = screenWidth/7, height= screenWidth/7;
 		
-		CustomDrawableView main = listCustomDrawableViewMain.get(0);
-		
-		// update of the main view
-		main.setCustomView(new CustomDrawableView(getApplicationContext(), intColor, width, height));
-		// width and height
-		layoutParams = new RelativeLayout.LayoutParams(width, height);
-		// set position
-		layoutParams.setMargins(screenWidth/2-width/2,screenHeight/8,0,0);
-		main.setLayoutParams(layoutParams);
-		
-		listCustomDrawableViewMain.set(0, main);
-		
-		int numberOfChoices = listCustomDrawableViewChoices.size();
+		for (int i= 0; i < numberOfMain; i++)
+		{
+			CustomDrawableView view = listCustomDrawableViewMain.get(i);
+			
+			// update of the main view
+			view.setCustomView(new CustomDrawableView(getApplicationContext(), intColor, width, height));
+			// width and height
+			layoutParams = new RelativeLayout.LayoutParams(width, height);
+			// set position
+			layoutParams.setMargins((screenWidth/4)*i+(width/2),height/20,0,0);
+			view.setLayoutParams(layoutParams);
+			
+			// update in the list
+			listCustomDrawableViewMain.set(i, view);
+		}
 		
 		Random r = new Random();
 		int randomNumber = r.nextInt(numberOfChoices);
@@ -504,7 +501,7 @@ public class DNMSTestActivity extends Activity {
 			else
 			{
 				// this one will be like the main view !
-				view.setCustomView(listCustomDrawableViewMain.get(0));
+				view.setCustomView(listCustomDrawableViewMain.get(i));
 				view.setIsLikeTheMainView(true);
 				view.setIsTheMainView(false);
 				
@@ -654,7 +651,7 @@ public class DNMSTestActivity extends Activity {
 			}
 			
 			res = "DNMS Test \r\n" +
-					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\n "+
+					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\r\n "+
 					"Nombre de tests : "+numberOfTrials+" \r\n" +
 					"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n" +
 					"Pourcentage de réussite : "+winningPourcentage+"% \r\n \r\n"+ resTest;

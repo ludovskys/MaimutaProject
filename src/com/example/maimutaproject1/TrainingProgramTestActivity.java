@@ -331,7 +331,7 @@ public class TrainingProgramTestActivity extends Activity {
 		NumberFormat formatter = new DecimalFormat("0.00");
 		
 		res = "Training Program \r\n" +
-				"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\n "+
+				"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\r\n "+
 				"Echec au niveau n° "+level+" \r\n" +
 				"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n \r\n"+ resTest;
 		
