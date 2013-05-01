@@ -27,21 +27,23 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090013;
+        public static final int action_settings=0x7f090015;
         public static final int buttonStartDMSTest=0x7f090009;
-        public static final int buttonStartTest=0x7f09000f;
-        public static final int buttonStartTrainingProgramTest=0x7f09000b;
+        public static final int buttonStartTest=0x7f090011;
+        public static final int buttonStartTrainingProgramTest=0x7f09000d;
         public static final int checkBoxOtherChance=0x7f09000a;
-        public static final int checkBoxSendResultByEmail=0x7f090010;
-        public static final int chronometer=0x7f09000e;
+        public static final int checkBoxSendResultByEmail=0x7f090012;
+        public static final int chronometer=0x7f090010;
         public static final int editTextDelayBetweenPhase1And2=0x7f090008;
         public static final int editTextDelayPhase1=0x7f090006;
         public static final int editTextMaxNbTrials=0x7f090002;
         public static final int editTextMaxTime=0x7f090004;
-        public static final int editTextName=0x7f090011;
-        public static final int relativeLayout=0x7f090012;
-        public static final int relativeLayoutChoices=0x7f09000d;
-        public static final int relativeLayoutMain=0x7f09000c;
+        public static final int editTextName=0x7f090013;
+        public static final int editTextNumberViews=0x7f09000c;
+        public static final int relativeLayout=0x7f090014;
+        public static final int relativeLayoutChoices=0x7f09000f;
+        public static final int relativeLayoutMain=0x7f09000e;
+        public static final int textView1=0x7f09000b;
         public static final int textViewDelayBetweenPhase1And2=0x7f090007;
         public static final int textViewDelayPhase1=0x7f090005;
         public static final int textViewDmsParams=0x7f090000;
@@ -91,16 +93,17 @@ public final class R {
         public static final int dms_params=0x7f06000f;
         public static final int dms_time_between_trials=0x7f060012;
         public static final int dms_time_between_trials2=0x7f060013;
-        public static final int dnms_params=0x7f06001f;
-        public static final int edit_text_name=0x7f06001e;
+        public static final int dnms_params=0x7f060020;
+        public static final int edit_text_name=0x7f06001f;
         public static final int error=0x7f060009;
         public static final int fill_input_text=0x7f06000a;
         public static final int fill_input_text_delay=0x7f06000d;
         public static final int fill_input_text_max=0x7f06000b;
         public static final int hello_world=0x7f060002;
+        public static final int number_views=0x7f06001e;
         public static final int resultats=0x7f060019;
         public static final int start=0x7f060014;
-        public static final int startTest=0x7f060020;
+        public static final int startTest=0x7f060021;
         public static final int start_test=0x7f060003;
         /**  Concerne l'activité "BeforeDMSTestActivity 
          */

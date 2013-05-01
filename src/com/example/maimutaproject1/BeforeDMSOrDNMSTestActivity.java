@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class BeforeDMSOrDNMSTestActivity extends Activity {
 	
 	EditText editTextMaxNbTrials, editTextMaxTime,
-				editTextDelayPhase1,editTextDelayBetweenPhase1And2;
+				editTextDelayPhase1,editTextDelayBetweenPhase1And2, editTextNumberViews;
 	
 	TextView textViewDmsParams;
 	
@@ -41,6 +41,7 @@ public class BeforeDMSOrDNMSTestActivity extends Activity {
 		editTextMaxTime = (EditText) findViewById(R.id.editTextMaxTime);
 		editTextDelayPhase1 = (EditText) findViewById(R.id.editTextDelayPhase1);
 		editTextDelayBetweenPhase1And2 = (EditText) findViewById(R.id.editTextDelayBetweenPhase1And2);
+		editTextNumberViews = (EditText) findViewById(R.id.editTextNumberViews);
 		
 		textViewDmsParams = (TextView) findViewById(R.id.textViewDmsParams);
 		
@@ -109,11 +110,13 @@ public class BeforeDMSOrDNMSTestActivity extends Activity {
 		boolean editTextMaxTimeIsFilled = !editTextMaxTime.getText().toString().equalsIgnoreCase("");
 		boolean editTextDelayPhase1IsFilled = !editTextDelayPhase1.getText().toString().equalsIgnoreCase("");
 		boolean editTextDelayBetweenPhase1And2IsFilled = !editTextDelayBetweenPhase1And2.getText().toString().equalsIgnoreCase("");
+		boolean editTextNumberViewsIsFilled = !editTextNumberViews.getText().toString().equalsIgnoreCase("");
+		
 
 		// if one of several edittext wasnt fill
 		if (!editTextMaxNbTrialsIsFilled || !editTextMaxTimeIsFilled || 
 				 !editTextDelayPhase1IsFilled
-				|| !editTextDelayBetweenPhase1And2IsFilled)
+				|| !editTextDelayBetweenPhase1And2IsFilled || !editTextNumberViewsIsFilled)
 		{
 			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 			
@@ -204,6 +207,10 @@ public class BeforeDMSOrDNMSTestActivity extends Activity {
 			int delayBetweenPhase1And2 = Integer.parseInt(editTextDelayBetweenPhase1And2.getText().toString());
 			
 			i.putExtra("delayBetweenPhase1And2", delayBetweenPhase1And2);
+			
+			int numberViews = Integer.parseInt(editTextNumberViews.getText().toString());
+			
+			i.putExtra("numberViews", numberViews);
 			
 			i.putExtra("checkBoxOtherChance", checkBoxOtherChance.isChecked());
 			

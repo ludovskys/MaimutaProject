@@ -42,7 +42,8 @@ public class DMSTestActivity extends Activity {
 
 	CustomDrawableView customDrawableViewMain;
 	
-	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes;
+	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, 
+		numberOfChoices, numberOfMistakes, numberOfAllMistakes, numberViews;
 	
 	int testMode, state;
 	
@@ -96,6 +97,7 @@ public class DMSTestActivity extends Activity {
 		// display duration of the phase 1 (main view)
 		phase1Delay = infos.getInt("phase1Delay", 0);
 		delayBetweenPhase1And2 = infos.getInt("delayBetweenPhase1And2", 0);
+		numberViews = infos.getInt("numberViews", 0);
 		
 		// false if we go to the next test if the first answer is not good
 		//giveAnotherChance = false;
@@ -132,7 +134,7 @@ public class DMSTestActivity extends Activity {
 		listCustomDrawableViewChoices = new ArrayList<CustomDrawableView>();
 		
 		// TODO : parametre before
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < numberViews; i++)
 		{
 			CustomDrawableView c = new CustomDrawableView(this);
 			relativeLayoutChoices.addView(c);
@@ -485,7 +487,7 @@ public class DMSTestActivity extends Activity {
 			// width and height
 			layoutParams = new RelativeLayout.LayoutParams(width, height);
 			// set position
-		    layoutParams.setMargins((screenWidth/numberOfChoices)*i+(width/2),0,0,0);
+		    layoutParams.setMargins((screenWidth/numberOfChoices)*i+(width/4),0,0,0);
 		    view.setLayoutParams(layoutParams);
 			
 			// update in the list

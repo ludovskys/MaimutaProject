@@ -142,4 +142,23 @@
         android:layout_centerHorizontal="true"
         android:text="@string/check_box_other_chance" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextNumberViews"
+        android:layout_alignBottom="@+id/editTextNumberViews"
+        android:layout_alignLeft="@+id/checkBoxOtherChance"
+        android:text="@string/number_views" />
+
+    <EditText
+        android:id="@+id/editTextNumberViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTextDelayBetweenPhase1And2"
+        android:layout_below="@+id/checkBoxOtherChance"
+        android:layout_toRightOf="@+id/checkBoxOtherChance"
+        android:ems="1"
+        android:inputType="number" />
+
 </RelativeLayout>

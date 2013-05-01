@@ -37,7 +37,8 @@ public class DNMSTestActivity extends Activity {
 	
 	TextView textViewTrialsWon, textViewTrialsLost;
 	
-	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, numberOfMistakes, numberOfAllMistakes, numberOfMain;
+	int nbMaxTrials, maxTime, numberOfTrials, trialsWon, trialsLost, numberOfChoices, 
+		numberOfMistakes, numberOfAllMistakes, numberOfMain, numberViews;
 	
 	int testMode, state;
 	
@@ -93,6 +94,7 @@ public class DNMSTestActivity extends Activity {
 		// display duration of the phase 1 (main view)
 		phase1Delay = infos.getInt("phase1Delay", 0);
 		delayBetweenPhase1And2 = infos.getInt("delayBetweenPhase1And2", 0);
+		numberViews = infos.getInt("numberViews", 0);
 		
 		// false if we go to the next test if the first answer is not good
 		//giveAnotherChance = false;
@@ -128,14 +130,14 @@ public class DNMSTestActivity extends Activity {
 		listCustomDrawableViewMain = new ArrayList<CustomDrawableView>();
 		
 		// TODO : parametre before
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < numberViews; i++)
 		{
 			CustomDrawableView c = new CustomDrawableView(this);
 			relativeLayoutChoices.addView(c);
 			listCustomDrawableViewChoices.add(c);
 		}
 		
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < numberViews; i++)
 		{
 			CustomDrawableView c = new CustomDrawableView(this);
 			c.setIsTheMainView(true);
@@ -471,7 +473,7 @@ public class DNMSTestActivity extends Activity {
 			// width and height
 			layoutParams = new RelativeLayout.LayoutParams(width, height);
 			// set position
-			layoutParams.setMargins((screenWidth/4)*i+(width/2),height/20,0,0);
+			layoutParams.setMargins((screenWidth/numberOfMain)*i+(width/4),height/20,0,0);
 			view.setLayoutParams(layoutParams);
 			
 			// update in the list
@@ -507,7 +509,7 @@ public class DNMSTestActivity extends Activity {
 			// width and height
 			layoutParams = new RelativeLayout.LayoutParams(width, height);
 			// set position
-		    layoutParams.setMargins((screenWidth/4)*i+(width/2),0,0,0);
+			layoutParams.setMargins((screenWidth/numberOfChoices)*i+(width/4),0,0,0);
 		    view.setLayoutParams(layoutParams);
 			
 			// update in the list
