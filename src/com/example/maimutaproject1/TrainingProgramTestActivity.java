@@ -142,7 +142,7 @@ public class TrainingProgramTestActivity extends Activity {
 								// stop the trial
 								mpMarioDies.start();
 								buildResult();
-								//showAlertDialogRes(); 
+								showAlertDialogRes(); 
 								
 								state = SystemUtils.STATE_FINISH;
 							}
@@ -463,6 +463,8 @@ public class TrainingProgramTestActivity extends Activity {
 				
 			});
 			
+			// we save the datas to send them later
+			
 			Date d = Calendar.getInstance().getTime();
 			
 			SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
@@ -492,7 +494,7 @@ public class TrainingProgramTestActivity extends Activity {
 		}
 		
 		
-		finish();
+		//finish();
 		
 	}
 

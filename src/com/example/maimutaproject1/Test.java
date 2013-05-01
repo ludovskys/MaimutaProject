@@ -101,7 +101,7 @@ public class Test {
 		
 		if (this.testType == SystemUtils.DMS_TEST || this.testType == SystemUtils.DNMS_TEST)
 		{
-			res = res + "N° test : "+ testNumber + "\r\n";
+			res = res + "N° essai : "+ testNumber + "\r\n";
 			res = res + "Nombre de choix : "+ numberOfChoices + "\r\n";
 			res = res + "Délai phase 1 : "+ formatter.format(phase1Delay) + " ms\r\n";
 			res = res + "Délai entre phase 1 et 2 : "+ formatter.format(delayBetweenPhase1And2) + " ms\r\n";

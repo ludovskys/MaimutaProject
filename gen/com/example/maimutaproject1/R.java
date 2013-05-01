@@ -91,7 +91,8 @@ public final class R {
         public static final int dms_params=0x7f06000f;
         public static final int dms_time_between_trials=0x7f060012;
         public static final int dms_time_between_trials2=0x7f060013;
-        public static final int dnms_params=0x7f06001e;
+        public static final int dnms_params=0x7f06001f;
+        public static final int edit_text_name=0x7f06001e;
         public static final int error=0x7f060009;
         public static final int fill_input_text=0x7f06000a;
         public static final int fill_input_text_delay=0x7f06000d;
@@ -99,7 +100,7 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int resultats=0x7f060019;
         public static final int start=0x7f060014;
-        public static final int startTest=0x7f06001f;
+        public static final int startTest=0x7f060020;
         public static final int start_test=0x7f060003;
         /**  Concerne l'activité "BeforeDMSTestActivity 
          */

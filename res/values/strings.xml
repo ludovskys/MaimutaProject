@@ -34,6 +34,8 @@
     <string name="title_activity_dnmstest">DNMSTestActivity</string>
     <string name="title_activity_before_dnmstest">BeforeDNMSTestActivity</string>
     
+    <string name="edit_text_name">Votre prénom ici</string>
+    
     <string name="dnms_params">Paramètres pour un test DNMS</string>
 
 </resources>

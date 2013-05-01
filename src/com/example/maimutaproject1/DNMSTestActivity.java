@@ -144,9 +144,6 @@ public class DNMSTestActivity extends Activity {
 			listCustomDrawableViewMain.add(c);
 		}
 		
-		textViewTrialsWon = (TextView)findViewById(R.id.textViewTrialsWon);
-		textViewTrialsLost = (TextView)findViewById(R.id.textViewTrialsLost);
-		
 		chronometer = (Chronometer)findViewById(R.id.chronometer);
 		
 		numberOfAllMistakes = 0;
@@ -439,7 +436,7 @@ public class DNMSTestActivity extends Activity {
 				state = SystemUtils.STATE_FINISH;
 
 				// we show the res
-				//showAlertDialogRes();
+				showAlertDialogRes();
 				
 				return;
 			}
@@ -455,7 +452,7 @@ public class DNMSTestActivity extends Activity {
 				
 				state = SystemUtils.STATE_FINISH;
 				
-				//showAlertDialogRes();
+				showAlertDialogRes();
 				
 				return;
 			}
@@ -652,7 +649,7 @@ public class DNMSTestActivity extends Activity {
 			
 			res = "DNMS Test \r\n" +
 					"Nom du testeur : "+settings.getString("userName", "Sans nom") + "\r\n "+
-					"Nombre de tests : "+numberOfTrials+" \r\n" +
+					"Nombre d'essais : "+numberOfTrials+" \r\n" +
 					"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n" +
 					"Pourcentage de réussite : "+winningPourcentage+"% \r\n \r\n"+ resTest;
 		}
@@ -751,6 +748,8 @@ public class DNMSTestActivity extends Activity {
 				
 			});
 			
+			// we save the datas to send them later
+			
 			Date d = Calendar.getInstance().getTime();
 			
 			SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
@@ -780,7 +779,7 @@ public class DNMSTestActivity extends Activity {
 		}
 		
 		
-		finish();
+		//finish();
 		
 	}
 

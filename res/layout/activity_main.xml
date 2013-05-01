@@ -35,7 +35,7 @@
         android:layout_above="@+id/buttonStartTest"
         android:layout_centerHorizontal="true"
         android:inputType="text"
-        android:hint="Entrez votre prénom"
+        android:hint="@string/edit_text_name"
         android:ems="30" >
 
         <requestFocus />
