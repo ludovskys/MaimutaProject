@@ -64,7 +64,7 @@ class SendDataTask extends AsyncTask<String, Void, String> {
 			String data = URLEncoder.encode("fileTitle", "UTF-8") + "=" + URLEncoder.encode(params[0], "UTF-8");
 			data += "&" + URLEncoder.encode("testData", "UTF-8") + "=" + URLEncoder.encode(params[1], "UTF-8");
 			data += "&" + URLEncoder.encode("sendResultByEmail", "UTF-8") + "=" + URLEncoder.encode(params[2], "UTF-8");
-
+ 
 			// Send data
 			URL url = new URL(wS.getUrl()+"?f=createTest");
 			URLConnection conn = url.openConnection();

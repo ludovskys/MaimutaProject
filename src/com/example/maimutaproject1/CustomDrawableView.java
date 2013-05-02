@@ -64,7 +64,7 @@ public class CustomDrawableView extends View
 		int width = 0;
 		int height = 0;
 		
-		final String xmlns="http://schemas.android.com/apk/res/android";
+		String xmlns="http://schemas.android.com/apk/res/android";
         
         String sHeight = "", sWidth = "";
         // recovery of the height define in the xml file
@@ -92,7 +92,7 @@ public class CustomDrawableView extends View
 		super(context);
 		
 		int x = 0;
-		int y =  0;
+		int y = 0;
 		
 		// Shape available : PathShape, RectShape, ArcShape, OvalShape, RoundRectShape
 		Random r = new Random();
