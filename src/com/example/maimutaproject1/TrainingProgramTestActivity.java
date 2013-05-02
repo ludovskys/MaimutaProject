@@ -335,45 +335,40 @@ public class TrainingProgramTestActivity extends Activity {
 				"Echec au niveau n° "+level+" \r\n" +
 				"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n \r\n"+ resTest;
 		
-		final boolean isOnline = SystemUtils.isOnline(this);
-		
-		Handler h=new Handler();
-		
-		h.post(new Runnable() 
-		{
-			public void run() 
-			{
-				Date d = Calendar.getInstance().getTime();
-				
-				SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
-				
-				SimpleDateFormat formatDateJourTitle2 = new SimpleDateFormat("dd/MM/yyyy à kk:mm:ss");
-				
-				String dateToString = formatDateJourTitle.format(d); 
-				
-				String dateToString2 = formatDateJourTitle2.format(d); 
+		boolean isOnline = SystemUtils.isOnline(this);
 
-				String title = "TrainingProgram_"+dateToString;
-				
-				String title2 = "Training Program : "+dateToString2;
-				
-				ProcessExecuterModule processExecuterModule = new ProcessExecuterModule();
-				
-				if (isOnline)
-				{
-					String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
-					
-					Log.d("info", "online");
-					processExecuterModule.runSendTestData(TrainingProgramTestActivity.this,title,res,sendResultByEmail,title2);
-				}
-				else
-				{
-					showToastDataSent("Envoi des données impossible : pas de connexion à Internet",false);
-				}
-				
-				
-			}
-		});
+		Date d = Calendar.getInstance().getTime();
+		
+		SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
+		
+		SimpleDateFormat formatDateJourTitle2 = new SimpleDateFormat("dd/MM/yyyy à kk:mm:ss");
+		
+		String dateToString = formatDateJourTitle.format(d); 
+		
+		String dateToString2 = formatDateJourTitle2.format(d); 
+
+		String title = "TrainingProgram_"+dateToString;
+		
+		String title2 = "Training Program : "+dateToString2;
+		
+		ProcessExecuterModule processExecuterModule = new ProcessExecuterModule();
+		
+		if (isOnline)
+		{
+			String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
+			
+			Log.d("info","arrayListTests.get(0).getNumberOfChoices() : "+String.valueOf(arrayListTests.get(0).getNumberOfChoices()));
+			
+			//BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.TRAINING_PROGRAM_TEST,settings.getString("userName", "Sans nom"),
+					//formatter.format(totalSeconds),arrayListTests);
+			
+			Log.d("info", "online");
+			processExecuterModule.runSendTestData(TrainingProgramTestActivity.this,title,res,sendResultByEmail,title2);
+		}
+		else
+		{
+			showToastDataSent("Envoi des données impossible : pas de connexion à Internet",false);
+		}
 	}
 
 	private void showAlertDialogRes()

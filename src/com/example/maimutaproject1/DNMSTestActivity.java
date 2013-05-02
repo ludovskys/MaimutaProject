@@ -655,50 +655,40 @@ public class DNMSTestActivity extends Activity {
 					"Temps total : "+ formatter.format(totalSeconds) +" secondes \r\n" +
 					"Pourcentage de réussite : "+winningPourcentage+"% \r\n \r\n"+ resTest;
 		}
-		
-		Handler h=new Handler();
-		
-		// if we currently have an internet connection
-		final boolean isOnline = SystemUtils.isOnline(this);
-		
-		h.post(new Runnable() 
-		{
-			public void run() 
-			{
-				Date d = Calendar.getInstance().getTime();
-				
-				SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
-				
-				SimpleDateFormat formatDateJourTitle2 = new SimpleDateFormat("dd/MM/yyyy à kk:mm:ss");
-				
-				String dateToString = formatDateJourTitle.format(d); 
-				
-				String dateToString2 = formatDateJourTitle2.format(d); 
 
-				String title = "DNMSTest_"+dateToString; 
-				
-				String title2 = "DNMS Test : "+dateToString2;
-				
-				ProcessExecuterModule processExecuterModule = new ProcessExecuterModule();
-				
-				// if we have a connection to send the result
-				if (isOnline)
-				{
-					String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
-					
-					Log.d("info", "online");
-					// send datas
-					// TODO
-					processExecuterModule.runSendTestData(DNMSTestActivity.this,title,res,sendResultByEmail,title2);
-				}
-				else
-				{
-					showToastDataSent("Envoi des données impossible : pas de connexion à Internet",false);
-				}
-				
-				
-			}
-		});
+		// if we currently have an internet connection
+		boolean isOnline = SystemUtils.isOnline(this);
+
+		Date d = Calendar.getInstance().getTime();
+		
+		SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
+		
+		SimpleDateFormat formatDateJourTitle2 = new SimpleDateFormat("dd/MM/yyyy à kk:mm:ss");
+		
+		String dateToString = formatDateJourTitle.format(d); 
+		
+		String dateToString2 = formatDateJourTitle2.format(d); 
+
+		String title = "DNMSTest_"+dateToString; 
+		
+		String title2 = "DNMS Test : "+dateToString2;
+		
+		ProcessExecuterModule processExecuterModule = new ProcessExecuterModule();
+		
+		// if we have a connection to send the result
+		if (isOnline)
+		{
+			String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
+			
+			Log.d("info", "online");
+			// send datas
+			// TODO
+			processExecuterModule.runSendTestData(DNMSTestActivity.this,title,res,sendResultByEmail,title2);
+		}
+		else
+		{
+			showToastDataSent("Envoi des données impossible : pas de connexion à Internet",false);
+		}
 		
 	}
 	
