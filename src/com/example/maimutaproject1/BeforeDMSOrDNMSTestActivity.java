@@ -93,6 +93,7 @@ public class BeforeDMSOrDNMSTestActivity extends Activity {
 		editTextMaxNbTrials.setText("4");
 		editTextDelayPhase1.setText("1000");
 		editTextDelayBetweenPhase1And2.setText("1000");
+		editTextNumberViews.setText("4");
 	}
 
 	@Override

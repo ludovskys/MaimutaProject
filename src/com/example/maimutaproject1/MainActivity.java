@@ -254,7 +254,7 @@ public class MainActivity extends Activity {
 		{
 			processExecuterModule.runSendTestData(MainActivity.this,settings.getString("fileTitle"+numberOfWaitingDatas, ""),
 					settings.getString("testData"+numberOfWaitingDatas, ""),sendResultByEmail,
-					settings.getString("fileTitle2"+numberOfWaitingDatas, ""));
+					settings.getString("fileTitle2"+numberOfWaitingDatas, ""), settings.getString("xmlResults"+numberOfWaitingDatas, ""));
 			
 			numberOfWaitingDatas--; 
 		}

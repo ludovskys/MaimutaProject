@@ -359,11 +359,12 @@ public class TrainingProgramTestActivity extends Activity {
 			
 			Log.d("info","arrayListTests.get(0).getNumberOfChoices() : "+String.valueOf(arrayListTests.get(0).getNumberOfChoices()));
 			
-			//BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.TRAINING_PROGRAM_TEST,settings.getString("userName", "Sans nom"),
-					//formatter.format(totalSeconds),arrayListTests);
+			String xmlResults = BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.TRAINING_PROGRAM_TEST,settings.getString("userName", "Sans nom"),
+					formatter.format(totalSeconds),arrayListTests);
+			Log.d("info",xmlResults);
 			
 			Log.d("info", "online");
-			processExecuterModule.runSendTestData(TrainingProgramTestActivity.this,title,res,sendResultByEmail,title2);
+			processExecuterModule.runSendTestData(TrainingProgramTestActivity.this,title,res,sendResultByEmail,title2,xmlResults);
 		}
 		else
 		{
@@ -460,6 +461,8 @@ public class TrainingProgramTestActivity extends Activity {
 			
 			// we save the datas to send them later
 			
+			NumberFormat formatter = new DecimalFormat("0.00");
+			
 			Date d = Calendar.getInstance().getTime();
 			
 			SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
@@ -477,6 +480,9 @@ public class TrainingProgramTestActivity extends Activity {
 			int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
 			
 			numberOfWaitingDatas++;
+			
+			String xmlResults = BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.TRAINING_PROGRAM_TEST,settings.getString("userName", "Sans nom"),
+					formatter.format(totalSeconds),arrayListTests);
 								
 			editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
 			
@@ -484,6 +490,7 @@ public class TrainingProgramTestActivity extends Activity {
 			editor.putString("fileTitle"+numberOfWaitingDatas, title);
 			editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
 			editor.putString("testData"+numberOfWaitingDatas, res);
+			editor.putString("xmlResults", xmlResults);
 			
 			editor.commit();
 		}

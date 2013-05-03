@@ -621,6 +621,8 @@ public class DNMSTestActivity extends Activity {
 	{
 		String resTest = "";
 		
+		NumberFormat formatter = new DecimalFormat("0.00");
+		
 		for (Test t : arrayListTests)
 		{
 			//Log.d("info", t.toString());
@@ -635,8 +637,6 @@ public class DNMSTestActivity extends Activity {
 		else
 		{
 			double winningPourcentage; 
-			
-			NumberFormat formatter = new DecimalFormat("0.00");
 			
 			// if no errors at all
 			if (numberOfAllMistakes == 0)
@@ -681,9 +681,14 @@ public class DNMSTestActivity extends Activity {
 			String sendResultByEmail = (settings.getBoolean("sendResultByEmail", false)) ? "0" : "1";
 			
 			Log.d("info", "online");
+			
+			String xmlResults = BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.DNMS_TEST,settings.getString("userName", "Sans nom"),
+					formatter.format(totalSeconds),arrayListTests);
+			
+			
 			// send datas
 			// TODO
-			processExecuterModule.runSendTestData(DNMSTestActivity.this,title,res,sendResultByEmail,title2);
+			processExecuterModule.runSendTestData(DNMSTestActivity.this,title,res,sendResultByEmail,title2,xmlResults);
 		}
 		else
 		{
@@ -742,6 +747,8 @@ public class DNMSTestActivity extends Activity {
 			
 			// we save the datas to send them later
 			
+			NumberFormat formatter = new DecimalFormat("0.00");
+			
 			Date d = Calendar.getInstance().getTime();
 			
 			SimpleDateFormat formatDateJourTitle = new SimpleDateFormat("dd_MM_yyyy_kk_mm_ss");
@@ -759,6 +766,9 @@ public class DNMSTestActivity extends Activity {
 			int numberOfWaitingDatas = settings.getInt("numberOfWaitingDatas", 0);
 			
 			numberOfWaitingDatas++;
+			
+			String xmlResults = BuildXML.buildXML("monkeyModule", "createTest",SystemUtils.DNMS_TEST,settings.getString("userName", "Sans nom"),
+					formatter.format(totalSeconds),arrayListTests);
 								
 			editor.putInt("numberOfWaitingDatas", numberOfWaitingDatas);
 			
@@ -766,6 +776,7 @@ public class DNMSTestActivity extends Activity {
 			editor.putString("fileTitle"+numberOfWaitingDatas, title);
 			editor.putString("fileTitle2"+numberOfWaitingDatas, title2);
 			editor.putString("testData"+numberOfWaitingDatas, res);
+			editor.putString("xmlResults", xmlResults);
 			
 			editor.commit();
 		}
